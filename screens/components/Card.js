@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
+import { StyleSheet, Text, View,Image,Dimensions,ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; 
 export default function Card() {
   return (
-    <View >
+    <View style={{marginBottom:10}} >
         <Image 
         source={{uri:'https://images.unsplash.com/photo-1597526657150-beb8660f635a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'}}
         style={{width:'100%',
