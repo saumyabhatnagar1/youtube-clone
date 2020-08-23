@@ -3,12 +3,15 @@ import {Stylesheet,View,Text,TextInput, ScrollView,FlatList,ActivityIndicator} f
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import SearchCard from '../components/searchCard'
-//https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=kashi&type=video&key=AIzaSyBqTgh_vCdmrHQJEdz4jVhZ0TBtqiEZrLY
+import  {useNavigation } from '@react-navigation/native'
+import Header from '../components/Header'
+import Constant from 'expo-constants'
 
 const SearchScreen=()=>{
  const [value,setValue]=useState('')
  const [searchCardata,setsearchCard]=useState('');
  const [loading,setloading]=useState('')
+ const navigation= useNavigation('')
  const fetchVideo=()=>{
      setloading(true)
      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyBqTgh_vCdmrHQJEdz4jVhZ0TBtqiEZrLY
@@ -26,10 +29,12 @@ const SearchScreen=()=>{
                 flexDirection:'row',
                 justifyContent:'space-around',
                 elevation:2,
-                backgroundColor:'white'
+                backgroundColor:'white',
+                marginTop:Constant.statusBarHeight
             }}>
+            
 
-            <AntDesign name="back" size={24} color="black" />
+            <AntDesign name="back" onPress={()=>{navigation.goBack()}} size={24} color="black" />
             <TextInput
             style={{width:'70%',
             backgroundColor:'#e6e6e6',
