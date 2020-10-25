@@ -21,7 +21,7 @@ const SearchScreen=()=>{
      setloading(true)
      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyBqTgh_vCdmrHQJEdz4jVhZ0TBtqiEZrLY
      `).then(res=>res.json()).then((data=>{
-         console.log(data)
+         //console.log(data)
          dispatch({type:"add",payload:data.items})
          //setsearchCard(data.items)
          setloading(false);

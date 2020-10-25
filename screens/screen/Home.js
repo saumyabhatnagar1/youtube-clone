@@ -19,7 +19,7 @@ export default function HomeScreen() {
       <FlatList
       data={cardData}
       renderItem={({item})=>{
-        return <SearchCard 
+        return <Card 
         videoId={item.id.videoId}
         title={item.snippet.title}
         channel={item.snippet.channelTitle}

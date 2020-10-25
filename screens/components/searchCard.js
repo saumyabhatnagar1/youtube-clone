@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import {Stylesheet,View,Text,TextInput,Image,Dimensions} from 'react-native';
+import {Stylesheet,View,Text,TextInput,Image,Dimensions,TouchableOpacity} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
+import {useNavigation} from '@react-navigation/native'
 
 const SearchCard=(props)=>{
-
+    const navigation=useNavigation()
 
     return (
-        <View style={{flexDirection:'row',margin:10,marginBottom:5}}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Video',{videoId:props.videoId,title:props.title})}>
+
+        <View style={{flexDirection:'row',margin:10,marginBottom:5}}
+        
+        >
             <Image 
                 source={{uri:`https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`}}
                 style={{width:'45%',
@@ -22,6 +27,7 @@ const SearchCard=(props)=>{
             </Text>
         </View>
         </View>
+        </TouchableOpacity>
     )   
 }
 export default SearchCard;
