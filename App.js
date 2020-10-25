@@ -12,7 +12,11 @@ import Video from './screens/screen/Video';
 import Explore from './screens/screen/Explore'
 import Subscribe from './screens/screen/Subscribe'
 import { MaterialIcons } from '@expo/vector-icons';
+import {Provider} from 'react-redux'
+import {createStore} from 'redux';
+import {reducer} from './screens/reducer/reducers'
 
+const store=createStore(reducer)
 const Stack=createStackNavigator()
 const Tabs=createBottomTabNavigator()
 const RootHome=()=>{
@@ -48,6 +52,7 @@ const RootHome=()=>{
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
         <Stack.Screen name="rootHome" component={RootHome}></Stack.Screen>
@@ -55,6 +60,7 @@ export default function App() {
         <Stack.Screen name="Video" component={Video}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
 
       
   );

@@ -6,10 +6,15 @@ import SearchCard from '../components/searchCard'
 import  {useNavigation } from '@react-navigation/native'
 import Header from '../components/Header'
 import Constant from 'expo-constants'
-
+import {useSelector,useDispatch} from 'react-redux'
 const SearchScreen=()=>{
  const [value,setValue]=useState('')
- const [searchCardata,setsearchCard]=useState('');
+ //const [searchCardata,setsearchCard]=useState('');
+ const searchCardata=useSelector(state=>{
+     return state
+ })
+ const dispatch=useDispatch()
+
  const [loading,setloading]=useState('')
  const navigation= useNavigation('')
  const fetchVideo=()=>{
@@ -17,7 +22,8 @@ const SearchScreen=()=>{
      fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyBqTgh_vCdmrHQJEdz4jVhZ0TBtqiEZrLY
      `).then(res=>res.json()).then((data=>{
          console.log(data)
-         setsearchCard(data.items)
+         dispatch({type:"add",payload:data.items})
+         //setsearchCard(data.items)
          setloading(false);
     }))
  }
@@ -51,7 +57,7 @@ const SearchScreen=()=>{
             <FlatList
             data={searchCardata}
             renderItem={({item})=>{
-                return <SearchCard
+                return <SearchCard 
                 videoId={item.id.videoId}
                 title={item.snippet.title}
                 channel={item.snippet.channelTitle}
