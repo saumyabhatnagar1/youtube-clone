@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import {Stylesheet,View,Text,TextInput,Image,Dimensions,TouchableOpacity} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation,useTheme} from '@react-navigation/native'
 
 const SearchCard=(props)=>{
     const navigation=useNavigation()
-
+    const {colors}=useTheme()
+    const textColor=colors.iconColor
     return (
         <TouchableOpacity onPress={()=>navigation.navigate('Video',{videoId:props.videoId,title:props.title})}>
 
@@ -20,9 +21,9 @@ const SearchCard=(props)=>{
             }}
             />
         <View style={{paddingLeft:10,flex:1}}>
-            <Text style={{fontSize:15,width:'100%'}} ellipsizeMode="tail" numberOfLines={3}>
+            <Text style={{fontSize:15,width:'100%',color:textColor}} ellipsizeMode="tail" numberOfLines={3}>
             {props.title}</Text>
-            <Text style={{fontSize:12}}>
+            <Text style={{fontSize:12,color:textColor}}>
                 {props.channel}
             </Text>
         </View>

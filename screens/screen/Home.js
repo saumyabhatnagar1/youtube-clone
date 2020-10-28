@@ -10,7 +10,7 @@ import SearchCard from '../components/searchCard'
 export default function HomeScreen() { 
 
   const cardData=useSelector(state=>{
-    return state
+    return state.carddata
   })
   return (
     <View style={{flex:1}}>

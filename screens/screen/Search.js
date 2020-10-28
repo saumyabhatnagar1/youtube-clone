@@ -3,7 +3,7 @@ import {Stylesheet,View,Text,TextInput, ScrollView,FlatList,ActivityIndicator} f
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import SearchCard from '../components/searchCard'
-import  {useNavigation } from '@react-navigation/native'
+import  {useNavigation ,useTheme} from '@react-navigation/native'
 import Header from '../components/Header'
 import Constant from 'expo-constants'
 import {useSelector,useDispatch} from 'react-redux'
@@ -11,7 +11,7 @@ const SearchScreen=()=>{
  const [value,setValue]=useState('')
  //const [searchCardata,setsearchCard]=useState('');
  const searchCardata=useSelector(state=>{
-     return state
+     return state.carddata
  })
  const dispatch=useDispatch()
 
@@ -27,6 +27,8 @@ const SearchScreen=()=>{
          setloading(false);
     }))
  }
+ const {colors}=useTheme()
+ const iconColor=colors.iconColor
 
     return (
         <View style={{flex:1}}>
@@ -35,22 +37,22 @@ const SearchScreen=()=>{
                 flexDirection:'row',
                 justifyContent:'space-around',
                 elevation:2,
-                backgroundColor:'white',
+                backgroundColor:colors.headerColor,
                 marginTop:Constant.statusBarHeight
             }}>
             
 
-            <AntDesign name="back" onPress={()=>{navigation.goBack()}} size={24} color="black" />
+            <AntDesign name="back" color={iconColor} onPress={()=>{navigation.goBack()}} size={24}  />
             <TextInput
             style={{width:'70%',
-            backgroundColor:'#e6e6e6',
+            backgroundColor:'white',
             }}
             value={value}
             onChangeText={(text)=>{
                 setValue(text)
             }}
             />
-            <Feather name="send" size={24} color="black" onPress={()=>fetchVideo()} />
+            <Feather name="send" size={24} color={iconColor} onPress={()=>fetchVideo()} />
             
             </View>
             {loading ? <ActivityIndicator size='large' color='red'/>:null}

@@ -29,7 +29,7 @@ const Smallcard = ({ name }) => {
 
 const Explore = () => {
 const cardData=useSelector(state=>{
-    return state
+    return state.carddata
 })
  
     return (

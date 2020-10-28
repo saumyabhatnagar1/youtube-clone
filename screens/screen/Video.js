@@ -13,7 +13,10 @@ const Video =({route})=>{
             <View style={{width:"100%",
             height:200,
             }}>
-                <WebView source={{uri:`https://www.youtube.com/embed/${videoId}`}}/>
+                <WebView source={{uri:`https://www.youtube.com/embed/${videoId}`}}
+                javaScriptEnabled={true}
+                domStorageEnabled={true}
+                />
             </View>
             <Text style={{
                 fontSize:20,
